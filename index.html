@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Marsa 2015</title>
+	<style>		
+		h2 {
+			margin-bottom: 0;
+		}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.3/handlebars.min.js"></script>
+
+	<script id="numericList" type="text/x-handlebars-template">
+ 		<ol class="{{listClass}}">
+			{{#each .}}
+				<li><a href="{{url}}">{{name}}</a></li>
+			{{/each}}
+		</ol>
+	</script>
+</head>
+<body>
+	<h1>Marsa Alam Hilton 2015</h1>
+	<ul>
+		<li data-type="small">
+			<h2>Albums</h2>
+		</li>
+	</ul>
+
+	<script>
+		$(function() {
+			var names = [
+				'First (First days: hotel overview)',
+				'Second (Fishes)',
+				'Third (Fishes, tourtles)',
+				'Forth (Beach, waves)'
+			];
+			var smallUrls = [
+				'https://www.dropbox.com/sh/r8v5kx04ilmh5oh/AACt0Bs78zVPb6zuQ1BSu1Y8a?dl=0',
+				'https://www.dropbox.com/sh/g87xlr3bs055be7/AAAx0W1UzlglO1LCqO7F0NzTa?dl=0',
+				'https://www.dropbox.com/sh/j1tfajyytoi37b5/AABcfRlGOrNTgYxvTjqTLbo0a?dl=0',
+				'https://www.dropbox.com/sh/o06bwyjvdkua87u/AABVIYppaSL_fFxJ-C5lAlSHa?dl=0'
+			];
+
+			var listTemplate = Handlebars.compile($('#numericList').html());
+
+			$('[data-type="small"]').append(listTemplate(smallUrls.map(function(url, idx) {return {name: names[idx], url: url};})));
+		});
+	</script>
+</body>
+</html>
